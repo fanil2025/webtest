@@ -3,288 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>简单·清新网页</title>
-    <!-- 使用柔和的自然色系，干净无额外库 -->
+    <title>FANIL 的个人空间</title>
     <style>
-        /* 全局重置与字体 */
+        /* 基础重置 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: #f8fafc;
-            color: #1e293b;
-            line-height: 1.6;
-            padding: 1.5rem;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* 简约容器 — 最大宽度，居中 */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
+        body, html {
+            height: 100%;
             width: 100%;
-            flex: 1;
+            overflow: hidden; /* 防止出现滚动条 */
+        }
+
+        /* 背景设置 */
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('a.png'); /* 这里用的是相对路径 a.png */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: brightness(0.9); 
+            z-index: -1;
+        }
+
+        /* 居中容器 */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* 毛玻璃卡片 */
+        .profile-card {
+            background: rgba(255, 255, 255, 0.15); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        /* 【修改点】名字标题 */
+        .profile-card h1 {
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 5px;
+            font-size: 32px;
+            letter-spacing: 2px;
+        }
+
+        .profile-card p {
+            color: #f0f0f0;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* 按钮样式 */
+        .links {
             display: flex;
             flex-direction: column;
+            gap: 15px;
         }
 
-        /* ----- 头部 / 导航 ----- */
-        header {
+        .btn {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            flex-wrap: wrap;
-            padding: 0.75rem 0 1.5rem 0;
-            border-bottom: 1px solid #e9edf2;
-            margin-bottom: 2.5rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 500;
-            letter-spacing: -0.02em;
-            color: #0b2b3d;
-        }
-
-        .logo span {
-            color: #3b82f6;
-            font-weight: 600;
-        }
-
-        nav {
-            display: flex;
-            gap: 2rem;
-            font-size: 1rem;
-        }
-
-        nav a {
+            padding: 12px 20px;
+            border-radius: 30px;
             text-decoration: none;
-            color: #334155;
-            font-weight: 450;
-            transition: color 0.2s;
-            border-bottom: 2px solid transparent;
-            padding-bottom: 0.25rem;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
-        nav a:hover {
-            color: #1e4f7a;
-            border-bottom-color: #3b82f6;
+        /* QQ按钮颜色 */
+        .btn-qq {
+            background: rgba(18, 183, 245, 0.75);
+        }
+        .btn-qq:hover {
+            background: rgb(18, 183, 245);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 15px rgba(18, 183, 245, 0.4);
         }
 
-        /* ----- 主内容区 ----- */
-        main {
-            flex: 1;
+        /* B站按钮颜色 */
+        .btn-bilibili {
+            background: rgba(251, 114, 153, 0.75);
+        }
+        .btn-bilibili:hover {
+            background: rgb(251, 114, 153);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 15px rgba(251, 114, 153, 0.4);
         }
 
-        /* 欢迎区域 */
-        .hero {
-            background: #ffffff;
-            padding: 2.5rem 2rem;
-            border-radius: 24px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 0, 0, 0.03);
-            margin-bottom: 2.5rem;
-            border: 1px solid #f0f3f7;
+        /* 【新增】GitHub按钮颜色 */
+        .btn-github {
+            background: rgba(45, 45, 45, 0.75);
+        }
+        .btn-github:hover {
+            background: rgb(45, 45, 45);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 15px rgba(45, 45, 45, 0.4);
         }
 
-        .hero h1 {
-            font-size: 2.4rem;
-            font-weight: 550;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-            color: #0f293b;
-        }
-
-        .hero p {
-            font-size: 1.15rem;
-            color: #475569;
-            max-width: 600px;
-        }
-
-        /* 卡片网格 — 三列响应式 */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.8rem;
-            margin: 2.5rem 0;
-        }
-
-        .card {
-            background: #ffffff;
-            padding: 1.8rem 1.5rem;
-            border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-            border: 1px solid #edf2f7;
-            transition: transform 0.15s ease, box-shadow 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04);
-            border-color: #dce3ec;
-        }
-
-        .card h3 {
-            font-size: 1.3rem;
-            font-weight: 550;
-            margin-bottom: 0.6rem;
-            color: #1c3a55;
-        }
-
-        .card p {
-            color: #475569;
-            font-size: 0.98rem;
-        }
-
-        .card .emoji-big {
-            font-size: 2.2rem;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        /* 引用 / 附加内容 */
-        .quote-block {
-            background: #eef4ff;
-            padding: 1.8rem 2rem;
-            border-radius: 20px;
-            margin: 2rem 0 1.5rem 0;
-            border-left: 6px solid #3b82f6;
-            color: #1e2a41;
-        }
-
-        .quote-block p {
-            font-size: 1.1rem;
-            font-style: italic;
-        }
-
-        .quote-block cite {
-            display: block;
-            margin-top: 0.5rem;
-            font-style: normal;
-            font-weight: 450;
-            color: #2c3f5c;
-        }
-
-        /* ----- 页脚 ----- */
-        footer {
-            margin-top: 3rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #e2e8f0;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            align-items: center;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        footer a {
-            color: #3b82f6;
-            text-decoration: none;
-            margin-left: 0.75rem;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* 小屏微调 */
-        @media (max-width: 600px) {
-            body {
-                padding: 1rem;
+        /* 小屏幕适配 */
+        @media (max-width: 480px) {
+            .profile-card {
+                padding: 30px 20px;
             }
-
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.75rem;
-            }
-
-            nav {
-                gap: 1.5rem;
-                flex-wrap: wrap;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .card-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .quote-block {
-                padding: 1.2rem;
+            .profile-card h1 {
+                font-size: 28px;
             }
         }
     </style>
 </head>
 <body>
+
+    <!-- 背景图容器 -->
+    <div class="bg-image"></div>
+
+    <!-- 中间卡片 -->
     <div class="container">
-        <!-- 头部 -->
-        <header>
-            <div class="logo">✨ <span>简·页</span></div>
-            <nav>
-                <a href="#">首页</a>
-                <a href="#">探索</a>
-                <a href="#">灵感</a>
-                <a href="#">关于</a>
-            </nav>
-        </header>
+        <div class="profile-card">
+            <!-- 【修改点】名字已改为 FANIL -->
+            <h1>FANIL</h1>
+            <p>这里是我的个人主页，点击下方链接联系我吧</p>
 
-        <!-- 主体 -->
-        <main>
-            <!-- 欢迎区域 -->
-            <section class="hero">
-                <h1>构造简单，心向自然</h1>
-                <p>一个干净、轻量的网页，只有 HTML 和 CSS。适合作为起点，或片刻的宁静。</p>
-            </section>
+            <div class="links">
+                <!-- GitHub 链接 -->
+                <a href="https://github.com/fanil2025" class="btn btn-github" target="_blank">
+                    💻 访问 GitHub
+                </a>
+                
+                <!-- B站 链接 -->
+                <a href="https://b23.tv/AFaVebn" class="btn btn-bilibili" target="_blank">
+                    📺 访问 B站 空间
+                </a>
 
-            <!-- 三张卡片：内容一目了然 -->
-            <section class="card-grid">
-                <div class="card">
-                    <span class="emoji-big">🌿</span>
-                    <h3>纯净布局</h3>
-                    <p>没有多余的装饰，只有清晰的结构和舒适的间距，让内容呼吸。</p>
-                </div>
-                <div class="card">
-                    <span class="emoji-big">🪶</span>
-                    <h3>轻盈响应</h3>
-                    <p>自动适配手机与桌面，在任何屏幕上都保持优雅与可读性。</p>
-                </div>
-                <div class="card">
-                    <span class="emoji-big">🎨</span>
-                    <h3>柔和色彩</h3>
-                    <p>以蓝色与中性色为基调，温润不刺眼，专注内容本身。</p>
-                </div>
-            </section>
-
-            <!-- 引言 + 小点缀 -->
-            <div class="quote-block">
-                <p>“设计不仅仅是它看起来怎样，还在于它如何工作。简约是复杂的最终成就。” </p>
-                <cite>—— 源自对极简的思考</cite>
+                <!-- QQ 链接 -->
+                <a href="tencent://message/?uin=403463863&Site=在线联系&Menu=yes" class="btn btn-qq" target="_blank">
+                    📱 联系 QQ (403463863)
+                </a>
             </div>
-
-            <!-- 可选的额外信息：展示一些简单文本，也可作为占位 -->
-            <div style="margin: 1.8rem 0 0.5rem 0; color: #475569; font-size: 0.95rem; background: #f1f5f9; padding: 1rem 1.5rem; border-radius: 40px; display: inline-block;">
-                ⚡ 纯手工 · 无框架 · 2026
-            </div>
-        </main>
-
-        <!-- 页脚 -->
-        <footer>
-            <span>© 2026 简单网页 · 用 ❤️ 制作</span>
-            <span>
-                <a href="#">GitHub</a>
-                <a href="#">风格</a>
-                <a href="#">主题</a>
-            </span>
-        </footer>
+        </div>
     </div>
+
 </body>
 </html>
