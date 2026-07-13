@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FANIL 的个人空间</title>
+    <style>
+        /* 基础重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* 防止出现滚动条 */
+        }
+
+        /* 背景设置 */
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('a.webp'); /* 这里用的是相对路径 a.webp */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: brightness(0.9); 
+            z-index: -1;
+        }
+
+        /* 居中容器 */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* 毛玻璃卡片 */
+        .profile-card {
+            background: rgba(255, 255, 255, 0.15); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        /* 【修改点】名字标题 */
+        .profile-card h1 {
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 5px;
+            font-size: 32px;
+            letter-spacing: 2px;
+        }
+
+        .profile-card p {
+            color: #f0f0f0;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* 按钮样式 */
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* QQ按钮颜色 */
+        .btn-qq {
+            background: rgba(18, 183, 245, 0.75);
+        }
+        .btn-qq:hover {
+            background: rgb(18, 183, 245);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 15px rgba(18, 183, 245, 0.4);
+        }
+
+        /* B站按钮颜色 */
+        .btn-bilibili {
+            background: rgba(251, 114, 153, 0.75);
+        }
+        .btn-bilibili:hover {
+            background: rgb(251, 114, 153);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 15px rgba(251, 114, 153, 0.4);
+        }
+
+        /* 【新增】GitHub按钮颜色 */
+        .btn-github {
+            background: rgba(45, 45, 45, 0.75);
+        }
+        .btn-github:hover {
+            background: rgb(45, 45, 45);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 15px rgba(45, 45, 45, 0.4);
+        }
+
+        /* 小屏幕适配 */
+        @media (max-width: 480px) {
+            .profile-card {
+                padding: 30px 20px;
+            }
+            .profile-card h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 背景图容器 -->
+    <div class="bg-image"></div>
+
+    <!-- 中间卡片 -->
+    <div class="container">
+        <div class="profile-card">
+            <!-- 【修改点】名字已改为 FANIL -->
+            <h1>FANIL</h1>
+            <p>这里是我的个人主页，点击下方链接联系我吧</p>
+
+            <div class="links">
+                <!-- GitHub 链接 -->
+                <a href="https://github.com/fanil2025" class="btn btn-github" target="_blank">
+                    💻 访问 GitHub
+                </a>
+                
+                <!-- B站 链接 -->
+                <a href="https://b23.tv/AFaVebn" class="btn btn-bilibili" target="_blank">
+                    📺 访问 B站 空间
+                </a>
+
+                <!-- QQ 链接 -->
+                <a href="tencent://message/?uin=403463863&Site=在线联系&Menu=yes" class="btn btn-qq" target="_blank">
+                    📱 联系 QQ (403463863)
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
